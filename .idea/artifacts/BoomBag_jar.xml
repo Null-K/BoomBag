@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BoomBag:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/BoomBag_jar</output-path>
+    <root id="archive" name="BoomBag.jar">
+      <element id="module-output" name="BoomBag" />
+    </root>
+  </artifact>
+</component>
