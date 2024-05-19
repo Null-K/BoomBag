@@ -10,10 +10,16 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Random;
+
 public class BoomBag extends JavaPlugin implements Listener {
+
+    private double tntChance;
 
     @Override
     public void onEnable() {
+        saveDefaultConfig();
+        tntChance = getConfig().getDouble("tnt-chance",0.5);
         getServer().getPluginManager().registerEvents(this, this);
     }
 
@@ -27,8 +33,11 @@ public class BoomBag extends JavaPlugin implements Listener {
             }
 
             if (player.getInventory().contains(Material.TNT)) {
-                player.getInventory().removeItem(new ItemStack(Material.TNT, 1));
-                player.getWorld().spawn(player.getLocation(), TNTPrimed.class);
+                Random random = new Random();
+                if (random.nextDouble() < tntChance) {
+                    player.getInventory().removeItem(new ItemStack(Material.TNT, 1));
+                    player.getWorld().spawn(player.getLocation(), TNTPrimed.class);
+                }
             }
         }
     }
